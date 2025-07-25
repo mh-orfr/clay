@@ -87,7 +87,7 @@ $blue-d4: #004799 !default;
 $blue-d3: #0053b3 !default;
 $blue-d2: #005fcc !default;
 $blue-d1: #006be6 !default;
-$blue: if($enable-lexicon-flat-colors, #006eff, #0b5fff) !default;
+$blue: if($enable-lexicon-flat-colors, #1071BE, #1071BE) !default;
 $blue-l1: #338fff !default;
 $blue-l2: #66abff !default;
 $blue-l3: #97c5ff !default;
@@ -213,7 +213,7 @@ $colors: map-merge(
 	$colors
 );
 
-$primary: #0b5fff !default;
+$primary: #1071BE !default;
 $primary-d1: clay-darken($primary, 5.1) !default;
 $primary-d2: clay-darken($primary, 10) !default;
 $primary-l0: clay-lighten($primary, 14.9) !default;
@@ -453,9 +453,9 @@ $container-view: map-deep-merge(
 $moz-osx-font-smoothing: grayscale !default;
 $webkit-font-smoothing: antialiased !default;
 
-$font-import-url: null !default;
+$font-import-url: "https://use.typekit.net/qrs5ame.css" !default;
 
-$font-family-sans-serif: system-ui, -apple-system, BlinkMacSystemFont,
+$font-family-sans-serif: aller, sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
 	'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Arial,
 	sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
 $font-family-serif: Georgia, 'Times New Roman', Times, serif !default;
