@@ -1,6 +1,5 @@
 import React from 'react';
 import ClayButton from '@clayui/button';
-import ClayContainer from '@clayui/container';
 
 interface PageHeaderProps {
   headline: string;
@@ -15,11 +14,11 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   buttonText,
   onButtonClick,
 }) => (
-  <ClayContainer className="page-header-container">
+  <div className="page-header-container">
     <h1 className="page-header-headline">{headline}</h1>
     <p className="page-header-paragraph">{paragraph}</p>
     <ClayButton displayType="primary" onClick={onButtonClick}>
       {buttonText}
     </ClayButton>
-  </ClayContainer>
+  </div>
 );
