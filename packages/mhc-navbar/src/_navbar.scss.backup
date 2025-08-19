@@ -1,0 +1,239 @@
+// MHC Navbar Component Styles
+// Based on Figma design with Clay UI integration
+
+.mhc-navbar {
+  // Base navbar styles
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  // Utility Bar Styles (Dark top bar)
+  .mhc-navbar-utility-bar {
+    background-color: #393a4a; // Dark/dark-l2
+    padding: 10px 0;
+    
+    .mhc-client-name {
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-align: center;
+    }
+    
+    .mhc-utility-nav {
+      display: flex;
+      align-items: center;
+      
+      .mhc-utility-button {
+        color: #ffffff !important;
+        font-size: 14px;
+        font-weight: 700;
+        border-right: 1px solid #6b6c7e;
+        border-radius: 0;
+        padding: 8px 12px;
+        
+        &:last-child {
+          border-right: none;
+        }
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .lexicon-icon {
+          color: #6b6c7e;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+  
+  // Main Navbar Styles (White bottom bar)
+  .mhc-navbar-main {
+    background-color: #ffffff;
+    padding: 10px 0;
+    border-top: 1px solid #e7e7ed;
+    
+    .mhc-navbar-brand-section {
+      display: flex;
+      align-items: center;
+      gap: 85px; // Matches Figma spacing
+      
+      .mhc-logo-placeholder {
+        width: 145px;
+        height: 60px;
+        background-color: #cdced9;
+        position: relative;
+        overflow: hidden;
+        
+        // Diagonal lines to match Figma placeholder
+        &::before {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background-image: 
+            linear-gradient(45deg, #e7e7ed 1px, transparent 1px),
+            linear-gradient(-45deg, #e7e7ed 1px, transparent 1px);
+          background-size: 20px 20px;
+        }
+      }
+      
+      .mhc-navbar-nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        height: 100%;
+        
+        .mhc-navbar-tab {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+          min-height: 60px;
+          
+          .mhc-navbar-tab-content {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 13.5px 16px;
+            cursor: pointer;
+            flex-grow: 1;
+            
+            .mhc-nav-text {
+              color: #6b6c7e; // Secondary/secondary
+              font-size: 14px;
+              font-weight: 700;
+              line-height: 1.5;
+              white-space: nowrap;
+            }
+            
+            .mhc-nav-icon {
+              width: 16px;
+              height: 16px;
+              color: #272833; // Dark/dark
+            }
+          }
+          
+          // Active state
+          &.mhc-navbar-tab--active {
+            .mhc-navbar-tab-content .mhc-nav-text {
+              color: #272833; // Dark/dark
+            }
+            
+            .mhc-navbar-tab-border {
+              position: absolute;
+              bottom: -4px;
+              left: 0;
+              right: 0;
+              height: 4px;
+              background-color: #65a2d5; // Primary/primary-l1
+              transform: scaleY(-1); // Matches Figma flip
+            }
+          }
+          
+          &:hover:not(.mhc-navbar-tab--active) {
+            .mhc-navbar-tab-content .mhc-nav-text {
+              color: #272833;
+            }
+          }
+        }
+      }
+    }
+    
+    .mhc-action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      
+      .btn {
+        font-size: 16px;
+        font-weight: 700;
+        padding: 16px 12px;
+        
+        &.btn-secondary {
+          background-color: #ffffff;
+          border-color: #cdced9;
+          color: #6b6c7e;
+          
+          &:hover {
+            background-color: #f8f9fa;
+          }
+        }
+        
+        &.btn-primary {
+          background-color: #1071BE; // Uses MHC theme primary color
+          border-color: #1071BE;
+          
+          &:hover {
+            background-color: #0d5fa3; // Darker shade of MHC primary
+          }
+        }
+      }
+    }
+  }
+  
+  // Variant-specific styles
+  &.mhc-navbar--variant2,
+  &.mhc-navbar--variant3 {
+    .mhc-navbar-brand-section {
+      justify-content: space-between;
+      width: 100%;
+      
+      .mhc-logo-placeholder {
+        flex-shrink: 0;
+      }
+    }
+  }
+  
+  &.mhc-navbar--variant3 {
+    .mhc-navbar-main {
+      .mhc-action-buttons {
+        .btn {
+          .lexicon-icon {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .mhc-navbar {
+    .mhc-navbar-utility-bar {
+      .mhc-utility-nav {
+        flex-wrap: wrap;
+        gap: 8px;
+        
+        .mhc-utility-button {
+          border-right: none;
+          border: 1px solid #6b6c7e;
+          border-radius: 4px;
+          padding: 6px 10px;
+          font-size: 12px;
+        }
+      }
+    }
+    
+    .mhc-navbar-main {
+      .mhc-navbar-brand-section {
+        gap: 20px;
+        
+        .mhc-navbar-nav {
+          display: none; // Hide navigation on mobile
+        }
+      }
+      
+      .mhc-action-buttons {
+        gap: 8px;
+        
+        .btn {
+          padding: 12px 8px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

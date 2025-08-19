@@ -4,7 +4,10 @@ import {PageHeader} from '../src/PageHeader';
 export default {
   title: 'Custom/MHC PageHeader',
   component: PageHeader,
-};
+  parameters: {
+    layout: 'fullscreen',
+  },
+} as Meta;
 
 export const Default = () => (
   <PageHeader

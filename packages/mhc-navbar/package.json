@@ -1,0 +1,14 @@
+{
+  "name": "mhc-navbar",
+  "version": "0.1.0",
+  "main": "src/index.ts",
+  "private": true,
+  "dependencies": {
+    "@clayui/button": "^3.0.0",
+    "@clayui/icon": "^3.0.0",
+    "@clayui/navigation-bar": "^3.0.0",
+    "@clayui/link": "^3.0.0",
+    "@clayui/layout": "^3.0.0",
+    "react": "^18.0.0"
+  }
+}
