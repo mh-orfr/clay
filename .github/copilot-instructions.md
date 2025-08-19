@@ -27,6 +27,40 @@ yarn build  # Builds all @clayui/* packages
 yarn test  # Uses Jest with comprehensive coverage thresholds
 ```
 
+### Complete Development & Deployment Workflow
+```bash
+# Full development cycle
+yarn workspace @clayui/css run build && yarn storybook
+# [Develop and test components in Storybook - Ctrl+C to stop]
+
+# Git deployment
+git status && git add -A
+git commit -m "feat: Component updates with details"
+git push origin master
+
+# GitHub Pages deployment
+npm run build-storybook  # Creates storybook-static/
+npm run deploy-storybook  # Deploys to gh-pages branch
+git fetch origin && git branch -a  # Verify gh-pages exists
+
+# Verify at https://mh-orfr.github.io/clay/ (wait 2-5 minutes)
+```
+
+### Testing & Validation Commands
+```bash
+# Check TypeScript errors across monorepo
+yarn lint:typescript
+
+# Test specific package
+yarn workspace [package-name] test
+
+# Format and fix linting issues
+yarn format:all
+
+# Build size analysis
+yarn genBuildSize:compare
+```
+
 ### Package Structure (Follow Exactly)
 ```
 packages/[component-name]/
@@ -159,6 +193,15 @@ yarn genBuildSize:compare
 
 # Format and fix linting issues
 yarn format:all
+
+# Check Storybook deployment status
+git branch -a | grep gh-pages
+git log --oneline -5  # Recent commits
+
+# GitHub Pages troubleshooting
+npm run build-storybook  # Rebuild if needed
+npm run deploy-storybook  # Redeploy if needed
+# Visit https://mh-orfr.github.io/clay/ (wait 2-5 minutes for updates)
 ```
 
 Follow the **DEVELOPMENT_GUIDELINES.md** for comprehensive patterns and refer to existing `packages/mhc-*` components as implementation examples.

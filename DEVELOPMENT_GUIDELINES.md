@@ -198,6 +198,81 @@ export const ComponentName = ({ ...props }) => {
 - Include Figma design links in component documentation
 - Maintain this guidelines document as patterns evolve
 
+## 🚀 Complete Development & Deployment Workflow
+
+### 1. Component Development & Testing
+```bash
+# Build Clay CSS foundation (required before Storybook)
+yarn workspace @clayui/css run build
+
+# Start Storybook for development
+yarn storybook  # Runs on http://localhost:8888
+
+# Build and test components
+yarn build      # Builds all @clayui/* packages
+yarn test       # Run Jest tests with coverage
+```
+
+### 2. Local Testing & Validation
+```bash
+# Check TypeScript errors across monorepo
+yarn lint:typescript
+
+# Test specific package
+yarn workspace [package-name] test
+
+# Format and fix linting issues
+yarn format:all
+
+# Build size analysis
+yarn genBuildSize:compare
+```
+
+### 3. Git Deployment Workflow
+```bash
+# Check status and stage changes
+git status
+git add -A
+
+# Commit with descriptive message
+git commit -m "feat: Description of changes
+
+- Detail 1
+- Detail 2"
+
+# Push to remote repository
+git push origin master
+```
+
+### 4. GitHub Pages Deployment
+```bash
+# Build static Storybook for deployment
+npm run build-storybook
+
+# Deploy to GitHub Pages (creates/updates gh-pages branch)
+npm run deploy-storybook
+
+# Verify deployment (check for new gh-pages branch)
+git fetch origin
+git branch -a  # Should show remotes/origin/gh-pages
+
+# Access deployed Storybook at: https://mh-orfr.github.io/clay/
+# Note: GitHub Pages can take 2-5 minutes to update after deployment
+```
+
+### 5. Complete Workflow Summary
+```bash
+# Full development cycle
+yarn workspace @clayui/css run build && yarn storybook
+# [Develop and test components in Storybook]
+# [Stop Storybook with Ctrl+C]
+
+git add -A && git commit -m "feat: Component updates" && git push origin master
+npm run build-storybook && npm run deploy-storybook
+
+# Verify at https://mh-orfr.github.io/clay/ (wait 2-5 minutes for updates)
+```
+
 ## 🎯 Success Metrics
 
 A well-implemented MHC component should:
