@@ -1,0 +1,341 @@
+// MHC Mega Menu Styles
+// Component-specific styles that extend Clay DropDown with MHC design system
+
+.mhc-mega-menu {
+  font-family: "Aller", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  // Override Clay dropdown positioning for mega menu
+  .dropdown-menu {
+    position: fixed !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: none !important;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+    padding: 0;
+    margin: 0;
+    transform: none !important;
+    
+    // Gradient shadow at top
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+      pointer-events: none;
+    }
+  }
+
+  // Ensure dropdown shows on top of everything
+  &.show .dropdown-menu {
+    display: block;
+  }
+}
+
+.mhc-mega-menu-content {
+  background: #fafafa;
+  min-height: 400px;
+  position: relative;
+}
+
+.mhc-mega-menu-inner {
+  padding: 2rem 0 3.5rem;
+  position: relative;
+}
+
+// Close button positioning
+.mhc-mega-menu-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+}
+
+.mhc-close-button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #464646;
+  
+  .mhc-close-text {
+    font-family: "Aller", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 12px;
+  }
+  
+  .lexicon-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  &:hover {
+    color: #1071be;
+  }
+}
+
+// Header section
+.mhc-mega-menu-header {
+  margin-bottom: 2rem;
+}
+
+.mhc-heading-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mhc-heading-title {
+  font-family: "Aller", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 52px;
+  letter-spacing: -0.5px;
+  color: #232323;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mhc-heading-icon {
+  .lexicon-icon {
+    width: 32px;
+    height: 32px;
+    color: #1071be;
+  }
+}
+
+.mhc-heading-description {
+  font-family: "Aller", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.25px;
+  color: #6e6e6e;
+  margin: 0;
+}
+
+// Menu sections grid
+.mhc-menu-sections {
+  gap: 2rem;
+}
+
+.mhc-menu-section {
+  padding: 1rem 0 2rem;
+  border-top: 1px solid #6e6e6e;
+  
+  &:nth-child(-n+3) {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+.mhc-section-title {
+  font-family: "Aller", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #232323;
+  margin: 0 0 1rem;
+}
+
+.mhc-section-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mhc-link-item {
+  margin: 0;
+}
+
+.mhc-mega-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 0;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  
+  &:hover {
+    text-decoration: none;
+    
+    .mhc-link-label {
+      color: #1071be;
+    }
+  }
+}
+
+.mhc-link-label {
+  font-family: "Aller", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #232323;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.mhc-link-description {
+  font-family: "Aller", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.25px;
+  color: #6e6e6e;
+  display: block;
+}
+
+// CTA Card
+.mhc-mega-cta {
+  background: #ffffff;
+  border: 1px solid #f1f1f1;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: fit-content;
+}
+
+.mhc-cta-icon {
+  width: 60px;
+  height: 60px;
+  background: #eef2fa;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  .lexicon-icon {
+    width: 40px;
+    height: 40px;
+    color: #1071be;
+  }
+}
+
+.mhc-cta-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mhc-cta-title {
+  font-family: "Aller", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #232323;
+  margin: 0;
+}
+
+.mhc-cta-description {
+  font-family: "Aller", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.25px;
+  color: #464646;
+  margin: 0;
+}
+
+.mhc-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mhc-cta-primary,
+.mhc-cta-secondary {
+  height: 48px;
+  padding: 15px 12px;
+  
+  // Override Clay button styles for MHC branding
+  &.btn-primary {
+    background-color: #1071be !important;
+    border-color: #1071be !important;
+    
+    &:hover,
+    &:focus {
+      background-color: #0d5a9e !important;
+      border-color: #0d5a9e !important;
+    }
+  }
+  
+  &.btn-secondary {
+    color: #1071be !important;
+    border-color: #1071be !important;
+    
+    &:hover,
+    &:focus {
+      background-color: #1071be !important;
+      border-color: #1071be !important;
+      color: #ffffff !important;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 991.98px) {
+  .mhc-mega-menu-inner {
+    padding: 1.5rem 0 2.5rem;
+  }
+  
+  .mhc-mega-menu-close {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+  
+  .mhc-menu-section {
+    margin-bottom: 1.5rem;
+    
+    &:nth-child(-n+2) {
+      border-top: none;
+      padding-top: 0;
+    }
+    
+    &:nth-child(3) {
+      border-top: 1px solid #6e6e6e;
+      padding-top: 1rem;
+    }
+  }
+  
+  .mhc-mega-cta {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .mhc-heading-title {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  
+  .mhc-menu-section {
+    &:nth-child(-n+1) {
+      border-top: none;
+      padding-top: 0;
+    }
+    
+    &:nth-child(2) {
+      border-top: 1px solid #6e6e6e;
+      padding-top: 1rem;
+    }
+  }
+}

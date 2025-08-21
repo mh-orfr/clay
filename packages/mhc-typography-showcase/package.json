@@ -1,0 +1,31 @@
+{
+  "name": "@clayui/mhc-typography-showcase",
+  "version": "3.0.0",
+  "description": "MHC Typography Showcase for testing SCSS overrides",
+  "license": "BSD-3-Clause",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mh-orfr/clay"
+  },
+  "scripts": {
+    "build": "tsc",
+    "checkFormat": "prettier --check --write src/**/*.ts src/**/*.tsx",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@clayui/layout": "^3.0.0",
+    "@clayui/button": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  },
+  "peerDependencies": {
+    "@clayui/css": "3.x",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

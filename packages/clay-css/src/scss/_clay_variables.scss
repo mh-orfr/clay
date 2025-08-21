@@ -1,9 +1,144 @@
 @import url('https://use.typekit.net/vsp8hxh.css');
 
+// MHC Brand Colors
 $blue: #1071BE;
 $primary: #1071BE;
+
+// MHC Typography
 $font-family-base: "Aller", Arial, Helvetica, sans-serif;
 
-* {
-  font-family: "Aller", Arial, Helvetica, sans-serif !important;
-}
+// MHC Heading Sizes - Desktop, Tablet, Mobile
+// Format: font-size/line-height
+// Breakpoints: lg+ = Desktop | md = Tablet | sm- = Mobile
+
+// H1 | Desktop: 60/80px | Tablet: 44/64px | Mobile: 34/52px
+$h1-font-size: 3.75rem !default; // 60px (desktop)
+$h1-font-size-tablet: 2.75rem !default; // 44px (tablet)
+$h1-font-size-mobile: 2.125rem !default; // 34px (mobile)
+
+// H2 | Desktop: 44/64px | Tablet: 34/52px | Mobile: 28/44px  
+$h2-font-size: 2.75rem !default; // 44px (desktop)
+$h2-font-size-tablet: 2.125rem !default; // 34px (tablet)
+$h2-font-size-mobile: 1.75rem !default; // 28px (mobile)
+
+// H3 | Desktop: 34/52px | Tablet: 28/44px | Mobile: 24/40px
+$h3-font-size: 2.125rem !default; // 34px (desktop)
+$h3-font-size-tablet: 1.75rem !default; // 28px (tablet)
+$h3-font-size-mobile: 1.5rem !default; // 24px (mobile)
+
+// H4 | Desktop: 28/44px | Tablet: 24/40px | Mobile: 18/32px
+$h4-font-size: 1.75rem !default; // 28px (desktop)
+$h4-font-size-tablet: 1.5rem !default; // 24px (tablet)
+$h4-font-size-mobile: 1.125rem !default; // 18px (mobile)
+
+// H5 | Desktop: 24/40px | Tablet: 18/32px
+$h5-font-size: 1.5rem !default; // 24px (desktop)
+$h5-font-size-tablet: 1.125rem !default; // 18px (tablet)
+$h5-font-size-mobile: null !default; // Uses tablet size
+
+// H6 | Desktop: 18/32px (no tablet/mobile variants specified)
+$h6-font-size: 1.125rem !default; // 18px
+$h6-font-size-tablet: null !default;
+$h6-font-size-mobile: null !default;
+
+// Override Clay's heading maps with proper responsive strategy
+// Using media-breakpoint-up to avoid cascade conflicts
+$h1: () !default;
+$h1: map-deep-merge(
+	(
+		font-size: $h1-font-size-mobile, // Mobile-first base
+		media-breakpoint-up: (
+			md: (
+				font-size: $h1-font-size-tablet,
+			),
+			xl: (
+				font-size: $h1-font-size,
+			),
+		),
+	),
+	$h1
+);
+
+$h2: () !default;
+$h2: map-deep-merge(
+	(
+		font-size: $h2-font-size-mobile, // Mobile-first base
+		media-breakpoint-up: (
+			md: (
+				font-size: $h2-font-size-tablet,
+			),
+			xl: (
+				font-size: $h2-font-size,
+			),
+		),
+	),
+	$h2
+);
+
+$h3: () !default;
+$h3: map-deep-merge(
+	(
+		font-size: $h3-font-size-mobile, // Mobile-first base
+		media-breakpoint-up: (
+			md: (
+				font-size: $h3-font-size-tablet,
+			),
+			xl: (
+				font-size: $h3-font-size,
+			),
+		),
+	),
+	$h3
+);
+
+$h4: () !default;
+$h4: map-deep-merge(
+	(
+		font-size: $h4-font-size-mobile, // Mobile-first base
+		media-breakpoint-up: (
+			md: (
+				font-size: $h4-font-size-tablet,
+			),
+			xl: (
+				font-size: $h4-font-size,
+			),
+		),
+	),
+	$h4
+);
+
+$h5: () !default;
+$h5: map-deep-merge(
+	(
+		font-size: $h5-font-size-tablet, // Mobile-first base (same as tablet)
+		media-breakpoint-up: (
+			xl: (
+				font-size: $h5-font-size,
+			),
+		),
+	),
+	$h5
+);
+
+$h6: () !default;
+$h6: map-deep-merge(
+	(
+		font-size: $h6-font-size, // Same across all breakpoints
+	),
+	$h6
+);
+
+// MHC Body Text Sizes
+$font-size-lg: 1.125rem !default; // Body Large: 18px
+$font-size-base: 1rem !default; // Body Base: 16px
+$font-size-sm: 0.875rem !default; // Body Small: 14px
+
+// MHC Line Heights (Clay uses unitless values for line-height)
+$headings-line-height: 1.333 !default; // Default heading line-height
+$line-height-lg: 1.778 !default; // Body Large: 32/18
+$line-height-base: 1.75 !default; // Body Base: 28/16
+$line-height-sm: 1.714 !default; // Body Small: 24/14
+
+// MHC Font Weights
+$headings-font-weight: 700 !default; // Aller Bold for all headings
+$font-weight-base: 400 !default; // Aller Regular for body text

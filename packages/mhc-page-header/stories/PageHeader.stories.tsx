@@ -2,7 +2,7 @@ import React from 'react';
 import {PageHeader} from '../src/PageHeader';
 
 export default {
-  title: 'Custom/MHC PageHeader',
+  title: 'Custom/Page Header',
   component: PageHeader,
   parameters: {
     layout: 'fullscreen',

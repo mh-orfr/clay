@@ -7,7 +7,7 @@
 /* Utility Bar - Custom MHC styling */
 .mhc-navbar-utility-bar {
   background-color: #393a4a;
-  padding: 10px 0;
+  padding: 8px 0; /* Reduced padding to match Figma */
 }
 
 .mhc-client-name {
@@ -35,14 +35,27 @@
 
 /* Main Navbar - MHC specific styling */
 .mhc-navbar-main {
-  padding: 10px 0;
+  padding: 10px 0; /* Consistent 10px padding as per Figma */
   border-color: #e7e7ed !important;
 }
 
 .mhc-navbar-brand-section {
-  gap: 85px;
+  gap: 32px; /* Increased spacing between logo and navigation (gap-8 = 32px) */
 }
 
+.mhc-logo {
+  display: flex;
+  align-items: center;
+  
+  img {
+    max-height: 40px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+  }
+}
+
+/* Legacy placeholder styling (can be removed if no longer needed) */
 .mhc-logo-placeholder {
   width: 145px;
   height: 60px;
@@ -119,7 +132,7 @@
   .btn {
     font-size: 1rem;
     font-weight: 700;
-    padding: 16px 12px;
+    padding: 12px 12px; /* Reduced vertical padding to match Figma */
   }
 
   .btn-primary {

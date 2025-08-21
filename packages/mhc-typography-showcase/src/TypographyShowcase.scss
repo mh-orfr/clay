@@ -1,0 +1,73 @@
+// MHC Typography Showcase component styles
+// Minimal styles - relying primarily on Clay/Bootstrap CSS and our SCSS overrides
+
+.mhc-typography-showcase {
+  padding: 2rem 0;
+  
+  .typography-section {
+    background: #fff;
+    border-radius: 0.5rem;
+    padding: 2rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .heading-sample {
+    border-bottom: 1px solid #e7e7ed;
+    padding-bottom: 1rem;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .body-text-samples {
+    border-top: 2px solid #e7e7ed;
+    padding-top: 2rem;
+  }
+  
+  .font-family-demo {
+    border-top: 2px solid #e7e7ed;
+    padding-top: 2rem;
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+  
+  // Responsive testing helpers
+  @media (max-width: 991.98px) {
+    .typography-section::before {
+      content: "📱 TABLET MODE (768-991px)";
+      display: block;
+      background: #ffc107;
+      color: #000;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      border-radius: 0.25rem;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .typography-section::before {
+      content: "📱 MOBILE MODE (576px-)";
+      background: #dc3545;
+      color: #fff;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .typography-section::before {
+      content: "🖥️ DESKTOP MODE (992px+)";
+      display: block;
+      background: #28a745;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      border-radius: 0.25rem;
+    }
+  }
+}

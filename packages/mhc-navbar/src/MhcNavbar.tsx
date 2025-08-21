@@ -11,11 +11,6 @@ const { Container, Row, Col } = ClayLayout;
 
 export interface MhcNavbarProps {
   /**
-   * The device variant of the navbar to display
-   */
-  device?: 'Desktop' | 'Tablet' | 'Mobile';
-  
-  /**
    * Client name to display in the utility bar
    */
   clientName?: string;
@@ -41,12 +36,18 @@ export interface MhcNavbarProps {
     id: string;
     label: string;
     icon?: string;
+    hasDropdown?: boolean;
   }>;
   
   /**
    * ID of the currently active tab
    */
   activeTab?: string;
+  
+  /**
+   * Callback when a navigation tab is clicked
+   */
+  onNavigationClick?: (tabId: string) => void;
   
   /**
    * Callback when Sign In button is clicked
@@ -59,20 +60,20 @@ export interface MhcNavbarProps {
   onCreateAccount?: () => void;
   
   /**
-   * Callback when Menu button is clicked (for mobile/simplified variants)
+   * Callback when Menu button is clicked (for mobile/tablet view)
    */
   onMenuClick?: () => void;
 }
 
 /**
- * MHC Navbar Component
+ * MHC Primary Navigation Component
  * 
- * A comprehensive navigation bar component based on Figma designs.
- * Integrates with Clay UI components while maintaining MHC design system styling.
+ * A responsive navigation bar component that automatically adapts to different screen sizes
+ * using Bootstrap's responsive utility classes. Integrates with Clay UI components while
+ * maintaining MHC design system styling.
  */
 export const MhcNavbar: React.FC<MhcNavbarProps> = ({
-  device = 'Desktop',
-  clientName = 'Client Name',
+  clientName = 'Magellan Healthcare',
   showUtilityBar = true,
   utilityLinks = [
     { id: 'english', label: 'English', icon: 'caret-bottom' },
@@ -82,22 +83,23 @@ export const MhcNavbar: React.FC<MhcNavbarProps> = ({
     { id: 'account', label: 'My Account' }
   ],
   navigationTabs = [
-    { id: 'home', label: 'Navbar Text' },
-    { id: 'nav1', label: 'Navbar Text' },
-    { id: 'nav2', label: 'Navbar Text', icon: 'caret-bottom' },
-    { id: 'nav3', label: 'Navbar Text', icon: 'caret-bottom' },
-    { id: 'nav4', label: 'Navbar Text', icon: 'caret-bottom' },
+    { id: 'members', label: 'Members', icon: 'caret-bottom' },
+    { id: 'providers', label: 'Providers', icon: 'caret-bottom' },
+    { id: 'about', label: 'About' },
+    { id: 'news', label: 'News' },
+    { id: 'support', label: 'Support' },
   ],
-  activeTab = 'home',
+  activeTab = 'members',
+  onNavigationClick,
   onSignIn,
   onCreateAccount,
   onMenuClick,
 }) => {
   // Utility Bar Component (used in default and variant2)
   const UtilityBar = () => (
-    <div className="mhc-navbar-utility-bar">
+    <div className="bg-dark">
       <Container>
-        <Row className="justify-content-between align-items-center">
+        <Row className="justify-content-between align-items-center py-2">
           <Col>
             <div className="mhc-client-name text-white">{clientName}</div>
           </Col>
@@ -123,15 +125,24 @@ export const MhcNavbar: React.FC<MhcNavbarProps> = ({
 
   // Main Navigation Bar Component using Clay Navigation Bar
   const MainNavbar = () => (
-    <div className="mhc-navbar-main bg-white border-top">
+    <div className="mhc-navbar-main bg-white border-bottom">
       <Container>
         <Row className="justify-content-between align-items-center">
           <Col xs="auto">
             <div className="mhc-navbar-brand-section d-flex align-items-center">
-              <div className="mhc-logo-placeholder">
-                {/* Logo placeholder - matches Figma design */}
+              <div className="mhc-logo me-5">
+                <img 
+                  src="https://member.magellanhealthcare.com/o/magellan-theme/images/custom/logo.svg"
+                  alt="Magellan Healthcare"
+                  style={{ 
+                    height: '40px', 
+                    width: 'auto',
+                    maxWidth: '200px'
+                  }}
+                />
               </div>
-              {device === 'Desktop' && (
+              {/* Navigation tabs - hidden on mobile/tablet, shown on desktop (lg+) */}
+              <div className="d-none d-lg-block">
                 <ClayNavigationBar
                   fluidSize={false}
                   inverted={false}
@@ -142,7 +153,11 @@ export const MhcNavbar: React.FC<MhcNavbarProps> = ({
                       key={tab.id}
                       active={tab.id === activeTab}
                     >
-                      <ClayButton displayType="unstyled" className="text-nowrap">
+                      <ClayButton 
+                        displayType="unstyled" 
+                        className="text-nowrap px-4 py-3"
+                        onClick={() => onNavigationClick?.(tab.id)}
+                      >
                         {tab.label}
                         {tab.icon && (
                           <ClayIcon 
@@ -154,67 +169,48 @@ export const MhcNavbar: React.FC<MhcNavbarProps> = ({
                     </ClayNavigationBar.Item>
                   ))}
                 </ClayNavigationBar>
-              )}
+              </div>
             </div>
           </Col>
           
-          {device === 'Desktop' ? (
-            <Col xs="auto">
-              <div className="mhc-action-buttons d-flex align-items-center">
-                <ClayButton 
-                  className="mr-3"
-                  displayType="secondary"
-                  onClick={onCreateAccount}
-                >
-                  Create Account
-                </ClayButton>
-                <ClayButton 
-                  displayType="primary"
-                  onClick={onSignIn}
-                >
-                  Sign In
-                </ClayButton>
-              </div>
-            </Col>
-          ) : (
-            <Col xs="auto">
+          {/* Desktop: Sign In/Create Account buttons - hidden below lg */}
+          <Col xs="auto" className="d-none d-lg-block">
+            <div className="mhc-action-buttons d-flex align-items-center">
               <ClayButton 
-                className="d-flex align-items-center"
+                className="me-3 px-3 py-3"
                 displayType="secondary"
-                onClick={onMenuClick}
+                onClick={onCreateAccount}
               >
-                <ClayIcon className="mr-1" symbol="plus" />
-                Menu
+                Create Account
               </ClayButton>
-            </Col>
-          )}
+              <ClayButton 
+                className="px-3 py-3"
+                displayType="primary"
+                onClick={onSignIn}
+              >
+                Sign In
+              </ClayButton>
+            </div>
+          </Col>
+          
+          {/* Mobile/Tablet: Menu button - shown below lg, hidden on desktop */}
+          <Col xs="auto" className="d-block d-lg-none">
+            <ClayButton 
+              className="d-flex align-items-center px-3 py-3"
+              displayType="secondary"
+              onClick={onMenuClick}
+            >
+              <ClayIcon className="me-1" symbol="bars" />
+              Menu
+            </ClayButton>
+          </Col>
         </Row>
       </Container>
     </div>
   );
 
-  // Render based on device
-  if (device === 'Mobile') {
-    return (
-      <Container fluid className="mhc-navbar mhc-navbar--mobile p-0">
-        {showUtilityBar && <UtilityBar />}
-        <MainNavbar />
-      </Container>
-    );
-  }
-
-  if (device === 'Tablet') {
-    return (
-      <Container fluid className="mhc-navbar mhc-navbar--tablet p-0">
-        {showUtilityBar && <UtilityBar />}
-        <MainNavbar />
-      </Container>
-    );
-  }
-
-  // Default Desktop
   return (
-    <Container fluid className="mhc-navbar mhc-navbar--desktop p-0">
+    <Container fluid className="mhc-navbar p-0">
       {showUtilityBar && <UtilityBar />}
       <MainNavbar />
     </Container>
